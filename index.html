@@ -5,98 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Decision-Making Website</title>
     <style>
+        /* General page styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #8e44ad; /* Purple background */
             margin: 0;
             padding: 0;
+            height: 100vh; /* Make sure the page takes the full height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        /* Center the content in a white square */
+        .content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%; /* Ensure it scales well on smaller screens */
+            max-width: 600px; /* Max width for larger screens */
+        }
+
         h1 {
-            color: #2c3e50;
-            text-align: center;
+            color: #8e44ad; /* Purple text */
+            font-size: 2em;
         }
+
         p {
-            text-align: center;
+            color: #555;
             font-size: 1.2em;
         }
-        nav {
-            background-color: #34495e;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        nav a:hover {
-            background-color: #2c3e50;
-            border-radius: 5px;
-        }
-        footer {
-            background-color: #34495e;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
+
+        /* Button styles */
         .button-container {
-            text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
         }
-        button {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
-            border: none;
+
+        .button {
+            display: inline-block;
+            background-color: white;
+            color: #8e44ad; /* Purple text */
+            padding: 15px 30px;
             font-size: 1.2em;
-            cursor: pointer;
+            border: 2px solid #8e44ad;
             border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
         }
-        button:hover {
-            background-color: #2980b9;
+
+        /* Add a purple arrow to the button */
+        .button::after {
+            content: '→'; /* Right arrow */
+            font-size: 1.5em;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover effect for the button */
+        .button:hover {
+            background-color: #8e44ad;
+            color: white;
+        }
+
+        /* Hover effect on the arrow */
+        .button:hover::after {
+            transform: translateX(5px);
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="content">
         <h1>Welcome to My Decision-Making Website!</h1>
-        <p>This is the home page. Click on the links to explore the website!</p>
-    </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#decision-making">Decision Making</a>
-    </nav>
-
-    <main>
-        <section id="about">
-            <h2>About This Website</h2>
-            <p>This website helps you make important decisions. You can explore different decision-making tools and resources here!</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>If you have any questions, feel free to reach out to me via email at <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-        </section>
-
-        <section id="decision-making">
-            <h2>Decision-Making Tools</h2>
-            <p>Here, you can use decision-making tools like quizzes, pros and cons lists, and more.</p>
-            <div class="button-container">
-                <a href="question2.html">
-                    <button>Go to Question 2</button>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Created by Your Name for a high school project</p>
-    </footer>
+        <p>This is the home page. Click the button below to explore the next question.</p>
+        
+        <div class="button-container">
+            <a href="questions2.html" class="button">Go to Question 2</a>
+        </div>
+    </div>
 </body>
 </html>
