@@ -3,87 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Decision-Making Website</title>
-    <style>
-        /* General page styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #8e44ad; /* Purple background */
-            margin: 0;
-            padding: 0;
-            height: 100vh; /* Make sure the page takes the full height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    <title>When Should You Eat?</title>
+    <script>
+        function determineMealTime() {
+            // Get user inputs
+            const mealsEaten = parseInt(document.getElementById('mealsEaten').value);
+            const lastMealTime = parseInt(document.getElementById('lastMealTime').value);
+            const snackTime = document.getElementById('snack').checked;
+            const workoutTime = parseInt(document.getElementById('workoutTime').value);
+            const currentTime = new Date().getHours(); // Get the current hour
 
-        /* Center the content in a white square */
-        .content {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 80%; /* Ensure it scales well on smaller screens */
-            max-width: 600px; /* Max width for larger screens */
-        }
+            let recommendation = '';
 
-        h1 {
-            color: #8e44ad; /* Purple text */
-            font-size: 2em;
-        }
+            // Decision Logic
+            if (mealsEaten < 3 && lastMealTime > 4) {
+                recommendation = 'It seems like it’s been a while since your last meal. Consider eating soon!';
+            } else if (snackTime) {
+                recommendation = 'You’ve had a snack recently, maybe wait a bit before eating again.';
+            } else if (currentTime >= 18 && !workoutTime) {
+                recommendation = 'It’s getting late. If you haven’t had dinner, now might be a good time to eat.';
+            } else if (workoutTime && workoutTime > currentTime) {
+                recommendation = `You plan to work out later. Consider having a light snack before your workout, then eat afterward.`;
+            } else {
+                recommendation = 'You seem to be on track with your meals today!';
+            }
 
-        p {
-            color: #555;
-            font-size: 1.2em;
+            document.getElementById('recommendation').textContent = recommendation;
         }
-
-        /* Button styles */
-        .button-container {
-            margin-top: 30px;
-        }
-
-        .button {
-            display: inline-block;
-            background-color: white;
-            color: #8e44ad; /* Purple text */
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border: 2px solid #8e44ad;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-        /* Add a purple arrow to the button */
-        .button::after {
-            content: '→'; /* Right arrow */
-            font-size: 1.5em;
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        /* Hover effect for the button */
-        .button:hover {
-            background-color: #8e44ad;
-            color: white;
-        }
-
-        /* Hover effect on the arrow */
-        .button:hover::after {
-            transform: translateX(5px);
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="content">
-        <h1>Welcome to My Decision-Making Website!</h1>
-        <p>This is the home page. Click the button below to get started.</p>
-        
-        <div class="button-container">
-            <a href="questions2.html" class="button">Go to Question 2</a>
-        </div>
-    </div>
+    <h1>When Should You Eat?</h1>
+    <form onsubmit="event.preventDefault(); determineMealTime();">
+        <label for="mealsEaten">How many meals have you eaten today?</label><br>
+        <input type="number" id="mealsEaten" min="1" max="5" required><br><br>
+
+        <label for="lastMealTime">How many hours ago did you last eat?</label><br>
+        <input type="number" id="lastMealTime" min="0" max="12" required><br><br>
+
+        <label for="snack">Have you eaten any snacks today?</label><br>
+        <input type="checkbox" id="snack"><br><br>
+
+        <label for="workoutTime">Are you planning to work out? If so, at what time?</label><br>
+        <input type="number" id="workoutTime" min="0" max="23" placeholder="Enter time in 24-hour format"><br><br>
+
+        <button type="submit">Get Recommendation</button>
+    </form>
+
+    <h2>Recommendation:</h2>
+    <p id="recommendation"></p>
 </body>
 </html>
